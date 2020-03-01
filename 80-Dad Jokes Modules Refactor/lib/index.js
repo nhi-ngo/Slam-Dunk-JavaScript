@@ -1,4 +1,4 @@
-async function fetchJoke(loader) {
+export async function fetchJoke(loader) {
   // turn loader on
   loader.classList.remove('hidden');
   const response = await fetch('https://icanhazdadjoke.com', {
@@ -11,3 +11,4 @@ async function fetchJoke(loader) {
   loader.classList.add('hidden');
   return data;
 }
+
