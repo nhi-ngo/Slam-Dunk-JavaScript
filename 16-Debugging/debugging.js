@@ -4,13 +4,19 @@ const people = [
   { name: 'Snickers', cool: false, country: 'Dog Country' },
 ];
 
-people.forEach((person, index) => {
-  console.log(person.name);
-});
-
+// people.forEach((person, index) => {
+  //   console.groupCollapsed(`${person.name}`);
+  //   console.log(person.country);
+  //   console.log(person.cool);
+  //   console.log('Done!');
+  //   console.groupEnd(`${person.name}`);
+  // });
+  
+  // console.table(people);
+  
 // Console Methods
 
-// Callstack
+// Callstack, Stack trace
 
 // Grabbing Elements
 
@@ -24,12 +30,21 @@ people.forEach((person, index) => {
 
 // Some Setup Code
 
+function doALotOfStuff() {
+  console.group('Doing some stuff');
+  console.log('Hey Im one');
+  console.warn('watch out!');
+  console.error('hey');
+  console.groupEnd('Doing some stuff');
+}
+
 function doctorize(name) {
+  // console.count(`running Doctorize for ${name}`);
   return `Dr. ${name}`;
 }
 
 function greet(name) {
-  doesntExist();
+  doesntExist(); // Cause an error
   return `Hello ${name}`;
 }
 
@@ -37,6 +52,13 @@ function go() {
   const name = doctorize(greet('Wes'));
   console.log(name);
 }
+
+function bootstrap() {
+  console.log('Starting the app!');
+  go();
+}
+
+// bootstrap();
 
 const button = document.querySelector('.bigger');
 button.addEventListener('click', function(e) {
