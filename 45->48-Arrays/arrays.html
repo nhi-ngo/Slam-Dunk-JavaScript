@@ -55,8 +55,9 @@
         ...comments.slice(0, commentIndex),
         ...comments.slice(commentIndex + 1),
       ];
-      // return our new array
     }
+
+    console.log(deleteComment(233, comments));
 
     const kaitIndex = names.findIndex(name => name === 'kait');
     const newNamesWithOutKait = [
