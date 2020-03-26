@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>45->48 Arrays</title>
+    <title>49->54 Arrays</title>
     <link rel="stylesheet" href="/base.css">
   </head>
 
@@ -60,10 +60,10 @@
       ];
 
       const people = [{
-          birthday: 'April 22, 1993',
+          birthday: 'March 28, 1989',
           names: {
-            first: 'Keith',
-            last: 'Buckley'
+            first: 'Nhi',
+            last: 'Ngo'
           }
         },
         {
@@ -153,10 +153,165 @@
         },
       ];
 
-
       /*
         Looping Methods
       */
+
+      // When looping over an array, we don't store the result in a variable since it does not return anything so the below will show undefined
+      // const result = toppings.forEach(logTopping);
+      // console.log(result); // undefined
+
+      function logTopping(topping, index, originalArray) {
+        const nextTopping = originalArray[index + 1];
+        const prevTopping = originalArray[index - 1];
+
+        // log the topping
+        console.log(topping);
+
+        // log the prev topping if there is one
+        prevTopping ? console.log(prevTopping) : null;
+
+        // log the next topping if there is one
+        nextTopping ? console.log(nextTopping) : null;
+
+        // if its the last item in the array, say good bye
+        index === originalArray.length - 1 ?
+          console.log('Goodbye') :
+          console.log('Getting the next topping');
+
+        // index === originalArray.length && console.log('Goodbye'); => && hack meanings if the condition is true go ahead and run stuff after && operator
+        console.log('-------🍕-------');
+      }
+
+      toppings.forEach(logTopping);
+
+      console.clear();
+
+      /* 
+        Map, Filter, Reduce 
+      */
+
+      // Map() is immutable  
+
+      function sayHi(face) {
+        return `Hi there ${face}`;
+      }
+
+      const toys = faces.map(sayHi);
+      console.log(toys);
+
+      function bosify(name) {
+        return `${name} Bos`;
+      }
+
+      function capitalize(word) {
+        return `${word[0].toUpperCase()}${word.slice(1)}`;
+      }
+
+      /* map() can be chained */
+
+      const fullNames = ['wes', 'kait', 'puppy'].map(capitalize).map(bosify);
+      console.log(fullNames);
+
+      const orderTotalsWithTax = orderTotals.map(total => total * 1.13);
+      console.log(orderTotalsWithTax);
+
+      //     function attachBody(face, body) {
+      //       return `
+      //           ${face}
+      // 　　　　　${body.repeat(3)}
+      // 　　　　 ${Array(3).fill(body).join(' ')}
+      // 　　　👇🏽　 ${body.repeat(2)}　👇🏽
+      //         ${Array(2).fill(body).join('   ')}
+      //         ${Array(2).fill(body).join('   ')}
+      // 　　　　　👢　　👢
+      //       `
+      //     }
+      //     faces.map(face => attachBody(face, '🍟')).forEach(body => console.log(body))
+
+      const cleanPeople = people.map(function (person) {
+        // timestamp
+        const birthday = new Date(person.birthday);
+        // now timestamp
+        const now = Date.now();
+        const age = Math.floor((now - birthday) / 31536000000);
+        console.log(age);
+        // get their birthday
+        // figure out how old they are
+        // return their full name and bday in an object
+        return {
+          age: age,
+          name: `${person.names.first} ${person.names.last}`
+        }
+      });
+      console.table(cleanPeople);
+
+      /* FILTER*/
+      // Filter() always return an array of everything that matches while find() returns an object of the first item that matches.
+
+      // find people who are older than 40 years old
+      const over40 = cleanPeople.filter(person => person.age > 40);
+      console.log(over40);
+
+      // check to see if there is any item in the array or array !== null
+      if (over40.length) {
+        console.log('There are some people over 40');
+      }
+
+      // find student with specific id
+
+      // higher order functions
+      function findById(id) {
+        return function isStudent(student) {
+          return student.id === id;
+        }
+      }
+
+      // [prop] in square bracket instead of dot notation becoz it is passed into function as an argument.
+      function findByProp(prop, propWeAreLookingFor) {
+        return function isStudent(student) {
+          return student[prop] === propWeAreLookingFor; //{student[prop]: propWeAreLookingFor} {key: value} object
+        }
+      }
+
+      const student = students.find(findById('565a'));
+      const student2 = students.find(findByProp('first_name', 'Micki'));
+      console.log(student);
+      console.log(student2);
+
+      console.clear();
+
+      /* REDUCE */
+      // don't forget to return
+
+      function tallyNumbers(tally, currentTotal) {
+        console.log(`The current tally is ${tally}`);
+        console.log(`The current total is ${currentTotal}`);
+        console.log('---------------');
+        // return the current tally PLUS the amount of this order
+        return tally + currentTotal;
+      }
+
+      const allOrders = orderTotals.reduce(tallyNumbers, 0);
+      console.log(allOrders);
+
+      // How many shirts, pants and socks are there?
+      function inventoryReducer(totals, item) {
+        console.log(`Looping over ${item.type}`);
+        //increment the type by 1. Again bracket notation used to look up item in object
+        totals[item.type] = totals[item.type] + 1 || 1;
+
+        // totals[item.type] ? totals[item.type] = totals[item.type] + 1 : totals[item.type] = 1;
+        // totals.shirt = totals.shirt + 1 || 1;
+        // return the totals (accumulator), so the next loop can use it
+        return totals;
+      }
+
+      const inventoryCount = inventory.reduce(inventoryReducer, {});
+      console.log(inventoryCount);
+
+      const totalInventoryPrice = inventory.reduce((acc, item) => acc + item.price, 0);
+      console.log(totalInventoryPrice);
     </script>
   </body>
 
