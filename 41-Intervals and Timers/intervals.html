@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>Intervals and Timers</title>
+		<link rel="stylesheet" href="/base.css" />
+	</head>
+
+	<body>
+		<script>
+			function buzzer() {
+				console.log('ENNGGGGGGG');
+			}
+			// console.log('Starting');
+			// setTimeout(buzzer, 500);
+			// console.log('finishing');
+
+			function setImmediateInterval(funcToRun, ms) {
+				// right away call that function
+				funcToRun();
+				// run a regular interval
+				return setInterval(funcToRun, ms);
+			}
+
+			// setImmediateInterval(buzzer, 2000);
+
+			function sayHi() {
+				console.log('Heyyy');
+			}
+			// setImmediateInterval(sayHi, 200);
+
+			function destroy() {
+				document.body.innerHTML = `<p>DESTROYED</p>`;
+			}
+
+			const bombTimer = setTimeout(destroy, 5000); // after 5s, DESTROYED will be printed to the screen
+
+			window.addEventListener('click', function() {
+				console.log('You clicked! You saved the world');
+				// If there is a click before 5s timer, stop the timer from running
+				// so DESTROYED won't be printed to the screen
+				clearTimeout(bombTimer);
+			});
+
+			// run this every 500ms and stop it from running entirely after 3s
+			const poopInterval = setInterval(function() {
+				console.log('💩');
+				console.log('Hehehe');
+			}, 500);
+
+			setTimeout(function() {
+				clearInterval(poopInterval);
+			}, 3000);
+		</script>
+	</body>
+</html>
