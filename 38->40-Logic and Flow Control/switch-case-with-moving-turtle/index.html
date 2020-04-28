@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>JS 40-Moving Turtle</title>
+  </head>
+
+
+  <body>
+    <style>
+      html {
+        background-color: #2980b9;
+      }
+
+      .turtle {
+        position: relative;
+        --x: 0;
+        --y: 0;
+        --rotateY: 0;
+        --rotate: 0;
+        transform: translateX(var(--x)) translateY(var(--y)) rotateY(var(--rotateY)) rotate(var(--rotate));
+        transition: transform 0.2s;
+      }
+    </style>
+
+    <img width="200" src="./turtle.png" alt="Turtle" class="turtle">
+
+    <script src="./turtle.js"></script>
+  </body>
+
+</html>
