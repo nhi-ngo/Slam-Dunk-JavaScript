@@ -33,6 +33,7 @@
       prizes.set(200, 'Duck');
       prizes.set(300, 'Car');
 
+      // .get(value associated with the key)
       console.log(`you win a ${prizes.get(score)}`);
 
 
@@ -46,10 +47,14 @@
         const li = `<li>${points} - ${prize}</li>`;
         ul.insertAdjacentHTML('beforeend', li);
       }
-      // .has()
-      // .delete()
+
+      // .has(key)
+      console.log(myMap.has(100));
+
+      // .delete(key)
       myMap.delete('name');
       console.log(myMap);
+
     </script>
   </body>
 
