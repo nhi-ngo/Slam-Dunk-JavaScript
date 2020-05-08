@@ -1,2 +1,5 @@
-59-Slider/.DS_Store
 .DS_Store
+node_modules/
+dist/
+.cache/
+.parcel-cache/
