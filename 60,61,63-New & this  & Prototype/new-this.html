@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>New, This, Prototypes and Classes</title>
+		<link rel="stylesheet" href="../base.css" />
+	</head>
+
+	<body>
+		<button class="one">Button 1</button>
+		<button class="two">Button 2</button>
+		<script>
+			const myDate = new Date('August 11, 2025');
+			console.dir(myDate);
+			console.log(myDate.getFullYear());
+
+			function Pizza(toppings = [], customer) {
+				// save the toppings that were passed in, to this instance of pizza
+				this.toppings = toppings;
+				this.customer = customer;
+				this.id = Math.floor(Math.random() * 1677725).toString(16);
+				this.slices = 10;
+			}
+
+			Pizza.prototype.eat = function () {
+				if (this.slices > 0) {
+					this.slices = this.slices - 1;
+					console.log(`You now have ${this.slices} left!`);
+				} else {
+					console.log(`Sorry! No slices left!`);
+        }
+        return this.slices;
+			};
+
+			Pizza.prototype.describe = function () {
+				return `This pizza is for ${this.customer} with the toppings ${this.toppings.join(', ')} and there are ${this.slices} left!`;
+			};
+
+			const pepperoniPizza = new Pizza(['pepperoni'], 'Nhi Ngo');
+			const canadianPizza = new Pizza(['pepperoni', 'mushroom', 'onion'], 'Teddy Bear');
+
+			console.log(pepperoniPizza);
+			// console.log(pepperoniPizza.constructor); // what function made me
+
+      console.log(canadianPizza);
+      console.log(canadianPizza.eat());
+      console.log(canadianPizza.describe());
+		</script>
+	</body>
+</html>
